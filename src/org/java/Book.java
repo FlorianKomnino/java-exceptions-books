@@ -6,12 +6,10 @@ public class Book {
 	private String author;
 	private String editor;
 	
-	public Book(String title, int pagesNumber, String author, String editor) {
-		this.title = title;
-		this.pagesNumber = pagesNumber;
-		this.author = author;
-		this.editor = editor;
-		
+	public Book(String title, int pagesNumber, String author) throws Exception {
+		setTitle(title);
+		setPagesNumber(pagesNumber);
+		setAuthor(author);
 	}
 
 	public String getTitle() {
@@ -19,9 +17,9 @@ public class Book {
 	}
 	public void setTitle(String title) throws Exception {
 		
-		if (title.length() <= 3 || title.length() > 50) {
+		if (title.length() < 1) {
 			
-			throw new Exception("Il nome non puo' contenere meno di 3 o piu' di 50 caratteri");
+			throw new Exception("Il nome non puo' contenere meno di 1 carattere");
 		}
 		
 		this.title = title;
@@ -31,9 +29,9 @@ public class Book {
 	}
 	public void setPagesNumber(int pagesNumber) throws Exception {
 		
-		if (pagesNumber < 5 || pagesNumber > 3000) {
+		if (pagesNumber <= 0) {
 			
-			throw new Exception("Il nome non puo' contenere meno di 3 o piu' di 50 caratteri");
+			throw new Exception("Il numero di pagine non puo' essere inferiore a 1");
 		}
 		this.pagesNumber = pagesNumber;
 	}
@@ -42,9 +40,9 @@ public class Book {
 	}
 	public void setAuthor(String author) throws Exception {
 		
-		if (author.length() <= 3 || author.length() > 50) {
+		if (author.length() < 1) {
 			
-			throw new Exception("L'autore non puo' contenere meno di 3 o piu' di 50 caratteri");
+			throw new Exception("L'autore non puo' contenere meno di 1 carattere");
 		}
 		
 		this.author = author;
@@ -52,13 +50,13 @@ public class Book {
 	public String getEditor() {
 		return editor;
 	}
-	public void setEditor(String editor) throws Exception {
-		
-		if (author.length() <= 3 || author.length() > 50) {
-			
-			throw new Exception("L'editore non puo' contenere meno di 3 o piu' di 50 caratteri");
-		}
+	public void setEditor(String editor) {
 		
 		this.editor = editor;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Titolo: " + title + ", autore: " + author + " - " + pagesNumber + " pagine.";
 	}
 }
